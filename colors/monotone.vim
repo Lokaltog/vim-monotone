@@ -75,7 +75,14 @@ hi Statement guifg=NONE guibg=NONE gui=bold
 hi String guifg=#9c9a98 guibg=NONE gui=NONE
 hi Todo guifg=#dd9922 guibg=NONE gui=bold,italic
 hi Type guifg=NONE guibg=NONE gui=bold
+hi Underlined guifg=NONE guibg=NONE gui=underline
 hi Whitespace guifg=#333333 guibg=NONE gui=NONE
+
+" Diff highlighting
+hi DiffAdd guifg=#88aa77 guibg=NONE gui=NONE
+hi DiffDelete guifg=#aa7766 guibg=NONE gui=NONE
+hi DiffChange guifg=#7788aa guibg=NONE gui=NONE
+hi DiffText guifg=#7788aa guibg=NONE gui=underline
 
 " Non-highlighted syntax items
 hi Conceal guifg=NONE guibg=NONE gui=NONE
