@@ -27,8 +27,17 @@ set background=dark
 hi clear
 syntax reset
 
-hi  Normal  guifg=#d0d0d0  guibg=#141210  gui=NONE  ctermfg=252  ctermbg=233  cterm=NONE
-hi  Visual  gui=reverse    cterm=reverse
+hi  Normal  guifg=#d0d0d0  guibg=#141210  gui=NONE    ctermfg=252  ctermbg=233  cterm=NONE
+hi  Visual  guifg=#000000  guibg=#aaaaaa  ctermfg=16  ctermbg=248
+
+" Normal cursor
+hi  Cursor   guibg=#ff4444  ctermbg=203
+" Insert cursor
+hi  CursorI  guibg=#ffffff  ctermbg=255
+" Replace cursor
+hi  CursorR  guibg=#ff4444  ctermbg=203
+" Operator-pending cursor
+hi  CursorO  guibg=#00afff  ctermbg=39
 
 " UI/special
 hi  ColorColumn   guifg=NONE     guibg=#191817  gui=NONE    ctermfg=NONE  ctermbg=234   cterm=NONE
@@ -44,13 +53,12 @@ hi  SpecialKey    guifg=NONE     guibg=NONE     gui=bold    ctermfg=NONE  ctermb
 hi  VertSplit     guifg=#555555  guibg=NONE     gui=NONE    ctermfg=240   ctermbg=NONE  cterm=NONE
 hi  Warning       guifg=#dd9922  guibg=NONE     gui=NONE    ctermfg=214   ctermbg=NONE  cterm=NONE
 hi  WarningMsg    guifg=#dd9922  guibg=NONE     gui=bold    ctermfg=214   ctermbg=NONE  cterm=bold
-hi  clear         Cursor
 hi  clear         FoldColumn
 hi  clear         SignColumn
 hi  clear         WildMenu
 
-hi  MatchParen  guifg=#ffffff  guibg=#778899  gui=bold  ctermfg=255  ctermbg=67  cterm=bold
-hi  ParenMatch  guifg=#ffffff  guibg=#778899  gui=bold  ctermfg=255  ctermbg=67  cterm=bold
+hi  MatchParen  guifg=#000000  guibg=#dd9922  ctermfg=16 ctermbg=214
+hi  ParenMatch  guifg=#000000  guibg=#dd9922  ctermfg=16 ctermbg=214
 
 hi  Pmenu       guifg=#999999  guibg=NONE     gui=NONE  ctermfg=246   ctermbg=NONE  cterm=NONE
 hi  PmenuSbar   guifg=NONE     guibg=NONE     gui=NONE  ctermfg=NONE  ctermbg=NONE  cterm=NONE
