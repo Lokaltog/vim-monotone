@@ -11,10 +11,6 @@ colorscheme differentiates comments, strings and keywords with different
 weights and shades of gray. It emphasizes errors, warnings and search
 highlighting as shown in the screenshots below.
 
-Monotone currently only supports GUI colors. GUI color support can be enabled
-with `set termguicolors` in neovim and a [terminal that supports 24-bit
-colors](https://github.com/kovidgoyal/kitty).
-
 ## Screenshots
 
 ![Screenshot of Kotlin and vimscript syntax examples in a split window](screenshots/1.png)
