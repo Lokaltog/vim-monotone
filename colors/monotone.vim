@@ -60,10 +60,10 @@ hi  clear         SignColumn
 hi  MatchParen  guifg=#000000  guibg=#dd9922  ctermfg=16 ctermbg=214
 hi  ParenMatch  guifg=#000000  guibg=#dd9922  ctermfg=16 ctermbg=214
 
-hi  Pmenu       guifg=#999999  guibg=NONE     gui=NONE  ctermfg=246   ctermbg=NONE  cterm=NONE
-hi  PmenuSbar   guifg=NONE     guibg=NONE     gui=NONE  ctermfg=NONE  ctermbg=NONE  cterm=NONE
-hi  PmenuSel    guifg=#ffffff  guibg=#333333  gui=bold  ctermfg=255   ctermbg=237   cterm=bold
-hi  PmenuThumb  guifg=NONE     guibg=#555555  gui=NONE  ctermfg=NONE  ctermbg=240   cterm=NONE
+hi Pmenu      guifg=#999999 guibg=#242220 gui=NONE      ctermfg=246  ctermbg=235 cterm=NONE
+hi PmenuSbar  guifg=NONE    guibg=#242220 gui=NONE      ctermfg=NONE ctermbg=235 cterm=NONE
+hi PmenuSel   guifg=#d0d0d0 guibg=#242220 gui=underline ctermfg=252  ctermbg=235 cterm=underline
+hi PmenuThumb guifg=NONE    guibg=#555555 gui=NONE      ctermfg=NONE ctermbg=240 cterm=NONE
 
 hi  StatusLine    guifg=#aaaaaa  guibg=NONE  gui=underline  ctermfg=248  ctermbg=NONE  cterm=underline
 hi  StatusLineNC  guifg=#555555  guibg=NONE  gui=underline  ctermfg=240  ctermbg=NONE  cterm=underline
