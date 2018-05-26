@@ -47,7 +47,7 @@ hi  Error         guifg=#ff4444  guibg=NONE     gui=bold    ctermfg=203   ctermb
 hi  ErrorMsg      guifg=#ff4444  guibg=NONE     gui=bold    ctermfg=203   ctermbg=NONE  cterm=bold
 hi  Folded        guifg=NONE     guibg=#252322  gui=italic  ctermfg=NONE  ctermbg=235   cterm=italic
 hi  LineNr        guifg=#555555  guibg=NONE     gui=NONE    ctermfg=240   ctermbg=NONE  cterm=NONE
-hi  MoreMsg       guifg=#99bbdd  guibg=NONE     gui=bold    ctermfg=153   ctermbg=NONE  cterm=bold
+hi  MoreMsg       guifg=#00afff  guibg=NONE     gui=bold    ctermfg=153   ctermbg=NONE  cterm=bold
 hi  Search        guifg=#000000  guibg=#dd9922  gui=NONE    ctermfg=16    ctermbg=214   cterm=NONE
 hi  SpecialKey    guifg=NONE     guibg=NONE     gui=bold    ctermfg=NONE  ctermbg=NONE  cterm=bold
 hi  VertSplit     guifg=#555555  guibg=NONE     gui=NONE    ctermfg=240   ctermbg=NONE  cterm=NONE
