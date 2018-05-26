@@ -105,8 +105,15 @@ hi clear PreProc
 hi clear Special
 hi clear Noise
 
-" ALE highlighting
+" Plugin-specific highlighting
+
+" ALE
 hi ALEError       guifg=#ff4444 gui=bold,underline ctermfg=203 cterm=bold,underline
 hi ALEWarning     guifg=#dd9922 gui=bold,underline ctermfg=214 cterm=bold,underline
 hi ALEErrorSign   guifg=#ff4444 ctermfg=203
 hi ALEWarningSign guifg=#dd9922 ctermfg=214
+
+" Sneak
+hi Sneak          guifg=#000000 guibg=#00afff gui=NONE    ctermfg=16  ctermbg=153 cterm=NONE
+hi SneakLabel     guifg=#000000 guibg=#00afff gui=bold    ctermfg=16  ctermbg=153 cterm=bold
+hi SneakLabelMask guifg=#00afff guibg=#00afff ctermfg=153 ctermbg=153
