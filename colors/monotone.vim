@@ -53,9 +53,9 @@ hi  SpecialKey    guifg=NONE     guibg=NONE     gui=bold    ctermfg=NONE  ctermb
 hi  VertSplit     guifg=#555555  guibg=NONE     gui=NONE    ctermfg=240   ctermbg=NONE  cterm=NONE
 hi  Warning       guifg=#dd9922  guibg=NONE     gui=NONE    ctermfg=214   ctermbg=NONE  cterm=NONE
 hi  WarningMsg    guifg=#dd9922  guibg=NONE     gui=bold    ctermfg=214   ctermbg=NONE  cterm=bold
+hi  WildMenu      guifg=#000000  guibg=#aaaaaa  gui=NONE    ctermfg=16    ctermbg=248   cterm=NONE
 hi  clear         FoldColumn
 hi  clear         SignColumn
-hi  clear         WildMenu
 
 hi  MatchParen  guifg=#000000  guibg=#dd9922  ctermfg=16 ctermbg=214
 hi  ParenMatch  guifg=#000000  guibg=#dd9922  ctermfg=16 ctermbg=214
