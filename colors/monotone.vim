@@ -104,3 +104,9 @@ hi clear Operator
 hi clear PreProc
 hi clear Special
 hi clear Noise
+
+" ALE highlighting
+hi ALEError       guifg=#ff4444 gui=bold,underline ctermfg=203 cterm=bold,underline
+hi ALEWarning     guifg=#dd9922 gui=bold,underline ctermfg=214 cterm=bold,underline
+hi ALEErrorSign   guifg=#ff4444 ctermfg=203
+hi ALEWarningSign guifg=#dd9922 ctermfg=214
