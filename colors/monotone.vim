@@ -93,6 +93,11 @@ hi  DiffDelete  guifg=#aa7766  guibg=NONE  gui=NONE       ctermfg=137  ctermbg=N
 hi  DiffChange  guifg=#7788aa  guibg=NONE  gui=NONE       ctermfg=67   ctermbg=NONE  cterm=NONE
 hi  DiffText    guifg=#7788aa  guibg=NONE  gui=underline  ctermfg=67   ctermbg=NONE  cterm=underline
 
+" Quickfix window (some groups need custom 'winhl')
+hi QuickFixLine guibg=#333333
+hi QFNormal guibg=#222222
+hi QFEndOfBuffer guifg=#222222
+
 " Non-highlighted syntax items
 hi clear Conceal
 hi clear Constant
