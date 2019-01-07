@@ -121,8 +121,12 @@ hi ALEWarningSign guifg=#dd9922 ctermfg=214
 " COC
 hi CocErrorHighlight   guisp=#ff4444 gui=undercurl ctermfg=203 cterm=bold,underline
 hi CocWarningHighlight guisp=#dd9922 gui=undercurl ctermfg=214 cterm=bold,underline
+hi CocInfoHighlight    guisp=#00afff gui=undercurl ctermfg=153 cterm=bold,underline
+hi CocHintHighlight    guisp=#00afff gui=undercurl ctermfg=153 cterm=bold,underline
 hi CocErrorSign        guifg=#ff4444 ctermfg=203
 hi CocWarningSign      guifg=#dd9922 ctermfg=214
+hi CocInfoSign         guifg=#00afff ctermfg=153
+hi CocHintSign         guifg=#00afff ctermfg=153
 
 " Sneak
 hi Sneak          guifg=#000000 guibg=#00afff gui=NONE    ctermfg=16  ctermbg=153 cterm=NONE
