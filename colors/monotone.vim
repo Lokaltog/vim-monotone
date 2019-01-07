@@ -113,12 +113,25 @@ hi clear Noise
 " Plugin-specific highlighting
 
 " ALE
-hi ALEError       guifg=#ff4444 gui=bold,underline ctermfg=203 cterm=bold,underline
-hi ALEWarning     guifg=#dd9922 gui=bold,underline ctermfg=214 cterm=bold,underline
+hi ALEError       guisp=#ff4444 gui=undercurl ctermfg=203 cterm=bold,underline
+hi ALEWarning     guisp=#dd9922 gui=undercurl ctermfg=214 cterm=bold,underline
 hi ALEErrorSign   guifg=#ff4444 ctermfg=203
 hi ALEWarningSign guifg=#dd9922 ctermfg=214
+
+" COC
+hi CocErrorHighlight   guisp=#ff4444 gui=undercurl ctermfg=203 cterm=bold,underline
+hi CocWarningHighlight guisp=#dd9922 gui=undercurl ctermfg=214 cterm=bold,underline
+hi CocErrorSign        guifg=#ff4444 ctermfg=203
+hi CocWarningSign      guifg=#dd9922 ctermfg=214
 
 " Sneak
 hi Sneak          guifg=#000000 guibg=#00afff gui=NONE    ctermfg=16  ctermbg=153 cterm=NONE
 hi SneakLabel     guifg=#000000 guibg=#00afff gui=bold    ctermfg=16  ctermbg=153 cterm=bold
 hi SneakLabelMask guifg=#00afff guibg=#00afff ctermfg=153 ctermbg=153
+
+" QuickScope
+hi QuickScopePrimary gui=underline guisp=#ff4444
+hi QuickScopeSecondary gui=underline guisp=#ff4444
+
+" Highlightedyank
+hi HighlightedyankRegion guibg=#000000 guifg=#dd9922
