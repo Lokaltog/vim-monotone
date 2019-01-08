@@ -11,8 +11,19 @@ colorscheme differentiates comments, strings and keywords with different
 weights and shades of gray. It emphasizes errors, warnings and search
 highlighting as shown in the screenshots below.
 
+It's possible to customize the theme color for terminals with `termguicolors`
+set by setting `g:monotone_color` to an array of HSL values. The following
+snippet sets the colorscheme to a green theme (screenshot below):
+
+```
+let g:monotone_color = [80, 58, 60]
+colorscheme monotone
+```
+
 ## Screenshots
 
 ![Screenshot of Kotlin and vimscript syntax examples in a split window](screenshots/1.png)
 
 ![Screenshot of search and TODO highlighting examples](screenshots/2.png)
+
+![Screenshot of custom theme color](screenshots/3.png)
