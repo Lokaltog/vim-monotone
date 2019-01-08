@@ -26,6 +26,7 @@ set background=dark
 
 hi clear
 syntax reset
+let g:colors_name = 'monotone'
 
 hi Normal  guifg=#d0d0d0  guibg=#141210  gui=NONE    ctermfg=252  ctermbg=233  cterm=NONE
 hi Visual  guifg=#000000  guibg=#aaaaaa  ctermfg=16  ctermbg=248
