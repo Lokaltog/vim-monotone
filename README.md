@@ -11,12 +11,40 @@ colorscheme differentiates comments, strings and keywords with different
 weights and shades of gray. It emphasizes errors, warnings and search
 highlighting as shown in the screenshots below.
 
-It's possible to customize the theme color for terminals with `termguicolors`
-set by setting `g:monotone_color` to an array of HSL values. The following
-snippet sets the colorscheme to a green theme (screenshot below):
+## Customization
+
+Theme customizations require a GUI or a terminal emulator with `termguicolors`
+set. Otherwise monotone falls back to the default gray theme.
+[Kitty](https://github.com/kovidgoyal/kitty) is recommended for full support
+for customizations and special styling like underline/undercurl highlighting.
+
+Customization variables must be set before `colorscheme monotone` is executed.
+
+### Theme color
+
+The theme color can be customized by setting `g:monotone_color` to an array of
+HSL values.
+
+### Secondary colors
+
+Monotone highlights important information in bright colors. The default colors
+are bright red, yellow and blue, which are used to highlight stuff like
+cursors, search matches and messages. By setting
+`g:monotone_secondary_hue_offset` it's possible to offset the secondary colors
+to better match a theme color.
+
+### Emphasize comments
+
+Comments are highlighted in a darker color by default. If you prefer to
+emphasize comments, set `g:monotone_emphasize_comments` to 1. This will
+highlight comments with the warning highlight color (yellow by default).
+
+## Configuration example
 
 ```
-let g:monotone_color = [80, 58, 60]
+let g:monotone_color = [120, 100, 70] " Sets theme color to bright green
+let g:monotone_secondary_hue_offset = 200 " Offset secondary colors by 200 degrees
+let g:monotone_emphasize_comments = 1 " Emphasize comments
 colorscheme monotone
 ```
 

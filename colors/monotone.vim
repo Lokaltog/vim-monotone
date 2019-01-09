@@ -23,16 +23,15 @@
 " IN THE SOFTWARE.
 
 if !exists('g:monotone_color')
-	let g:monotone_color = [8, 3, 82]
+	let g:monotone_color = [5, 3, 82]
 endif
-let s:base_color = g:monotone_color
+if !exists('g:monotone_secondary_hue_offset')
+	let g:monotone_secondary_hue_offset = 0
+endif
+if !exists('g:monotone_emphasize_comments')
+	let g:monotone_emphasize_comments = 0
+endif
 
-function! s:Shade(offset)
-	let h = s:base_color[0]
-	let s = s:base_color[1]
-	let l = s:base_color[2] - a:offset
-	return s:HSLToHex(h, s, l)
-endfunction
 function! s:HSLToHex(h, s, l)
 	" http://www.easyrgb.com/en/math.php#text19
 	" normalize the angle into the 0-360 range
@@ -53,6 +52,7 @@ function! s:HSLToHex(h, s, l)
 
 	return printf('#%02x%02x%02x', rgb.r, rgb.g, rgb.b)
 endfunction
+
 function! s:Hue2RGB(v1, v2, vH)
 	let H = a:vH
 	if H < 0 | let H += 1 | endif
@@ -62,79 +62,110 @@ function! s:Hue2RGB(v1, v2, vH)
 	if (3 * H) < 2 | return a:v1 + (a:v2 - a:v1) * ((2.0/3) - H) * 6 | endif
 	return a:v1
 endfunction
-function! s:Hi(group, guifgshade, guibgshade, gui, ctermfg, ctermbg, cterm)
-	let fg = type(a:guifgshade) == type('') ? a:guifgshade : s:Shade(a:guifgshade)
-	let bg = type(a:guibgshade) == type('') ? a:guibgshade : s:Shade(a:guibgshade)
-	exec printf('hi %s guifg=%s guibg=%s gui=%s ctermfg=%s ctermbg=%s cterm=%s',
-		\ a:group,
-		\ fg, bg, a:gui,
-		\ a:ctermfg, a:ctermbg, a:cterm)
+
+function! s:Shade(offset)
+	let h = g:monotone_color[0]
+	let s = g:monotone_color[1]
+	let l = g:monotone_color[2] - a:offset
+	let l = l < 1 ? 1 : l > 100 ? 100 : l
+	return s:HSLToHex(h, s, l)
 endfunction
 
-set background=dark
+let s:color_normal   = s:Shade(0)
+let s:color_dark_0   = s:Shade(60)
+let s:color_dark_1   = s:Shade(69)
+let s:color_dark_2   = s:Shade(73)
+let s:color_dark_3   = s:Shade(75)
+let s:color_bright_0 = s:Shade(46)
+let s:color_bright_1 = s:Shade(36)
+let s:color_bright_2 = s:Shade(22)
+
+let s:color_hl_1   = s:HSLToHex(g:monotone_secondary_hue_offset,       90, g:monotone_color[2] - 20)
+let s:color_hl_2   = s:HSLToHex(g:monotone_secondary_hue_offset + 35,  90, g:monotone_color[2] - 20)
+let s:color_hl_3   = s:HSLToHex(g:monotone_secondary_hue_offset + 200, 90, g:monotone_color[2] - 20)
+let s:color_eob    = s:HSLToHex(g:monotone_secondary_hue_offset,       40, g:monotone_color[2] - 50)
+let s:color_nt     = s:HSLToHex(g:monotone_secondary_hue_offset + 10,  45, g:monotone_color[2] - 40)
 
 hi clear
 syntax reset
 let g:colors_name = 'monotone'
 
-call s:Hi('Normal', 0, 75, 'NONE', 252, 233, 'NONE')
-call s:Hi('Visual', 75, 0, 'NONE', 16, 248, 'NONE')
+function! s:Hi(group, guifg, guibg, ctermfg, ctermbg, attr)
+	exec printf('hi %s guifg=%s guibg=%s gui=%s ctermfg=%s ctermbg=%s cterm=%s',
+		\ a:group, a:guifg, a:guibg, a:attr, a:ctermfg, a:ctermbg, a:attr)
+endfunction
 
-" Normal cursor
-hi Cursor   guibg=#ff4444  ctermbg=203
-" Insert cursor
-hi CursorI  guibg=#ffffff  ctermbg=255
-" Replace cursor
-hi CursorR  guibg=#ff4444  ctermbg=203
-" Operator-pending cursor
-hi CursorO  guibg=#00afff  ctermbg=39
+function! s:HiFG(group, guifg, ctermfg, attr)
+	exec printf('hi %s guifg=%s gui=%s ctermfg=%s cterm=%s',
+		\ a:group, a:guifg, a:attr, a:ctermfg, a:attr)
+endfunction
+
+function! s:HiBG(group, guibg, ctermbg, attr)
+	exec printf('hi %s guibg=%s gui=%s ctermbg=%s cterm=%s',
+		\ a:group, a:guibg, a:attr, a:ctermbg, a:attr)
+endfunction
+
+" Main colors
+call s:Hi('Normal', s:color_normal, s:color_dark_3, 252, 233, 'NONE')
+call s:Hi('Visual', s:color_dark_3, s:color_normal, 16, 248, 'NONE')
+
+" Cursors
+call s:HiBG('Cursor', s:color_hl_1, 203, 'NONE') " Normal cursor
+call s:HiBG('CursorI', '#ffffff', 255, 'NONE') " Insert cursor
+call s:HiBG('CursorR', s:color_hl_2, 203, 'NONE') " Replace cursor
+call s:HiBG('CursorO', s:color_hl_3, 39, 'NONE') " Operator-pending cursor
 
 " UI/special
-call s:Hi('ColorColumn', 'NONE', 73, 'NONE', 'NONE', 234, 'NONE')
-call s:Hi('CursorLine', 'NONE', 73, 'NONE', 'NONE', 234, 'NONE')
-call s:Hi('CursorLineNr', 'NONE', 69, 'NONE', 'NONE', 235, 'NONE')
-call s:Hi('Folded', 'NONE', 69, 'italic', 'NONE', 235, 'italic')
-hi Error         guifg=#ff4444  guibg=NONE     gui=bold    ctermfg=203   ctermbg=NONE  cterm=bold
-hi ErrorMsg      guifg=#ff4444  guibg=NONE     gui=bold    ctermfg=203   ctermbg=NONE  cterm=bold
-hi LineNr        guifg=#555555  guibg=NONE     gui=NONE    ctermfg=240   ctermbg=NONE  cterm=NONE
-hi MoreMsg       guifg=#00afff  guibg=NONE     gui=bold    ctermfg=153   ctermbg=NONE  cterm=bold
-hi Search        guifg=#000000  guibg=#dd9922  gui=NONE    ctermfg=16    ctermbg=214   cterm=NONE
+call s:Hi('ColorColumn', 'NONE', s:color_dark_2, 'NONE', 234, 'NONE')
+call s:Hi('CursorLine', 'NONE', s:color_dark_1, 'NONE', 234, 'NONE')
+call s:Hi('CursorLineNr', s:color_bright_2, s:color_dark_1, 'NONE', 235, 'NONE')
+call s:Hi('Folded', s:color_normal, s:color_dark_1, 252, 235, 'italic')
+call s:Hi('Search', s:color_dark_3, s:color_hl_2, 16, 214, 'bold')
+call s:Hi('LineNr', s:color_bright_0, 'NONE', 240, 'NONE', 'NONE')
+call s:Hi('VertSplit', s:color_bright_0, 'NONE', 240, 'NONE', 'NONE')
+call s:Hi('WildMenu', s:color_dark_3, s:color_normal, 16, 248, 'NONE')
 hi SpecialKey    guifg=NONE     guibg=NONE     gui=bold    ctermfg=NONE  ctermbg=NONE  cterm=bold
-hi VertSplit     guifg=#555555  guibg=NONE     gui=NONE    ctermfg=240   ctermbg=NONE  cterm=NONE
-hi Warning       guifg=#dd9922  guibg=NONE     gui=NONE    ctermfg=214   ctermbg=NONE  cterm=NONE
-hi WarningMsg    guifg=#dd9922  guibg=NONE     gui=bold    ctermfg=214   ctermbg=NONE  cterm=bold
-hi WildMenu      guifg=#000000  guibg=#aaaaaa  gui=NONE    ctermfg=16    ctermbg=248   cterm=NONE
 hi clear         FoldColumn
 hi clear         SignColumn
 
-hi MatchParen  guifg=#000000  guibg=#dd9922  ctermfg=16 ctermbg=214
-hi ParenMatch  guifg=#000000  guibg=#dd9922  ctermfg=16 ctermbg=214
+" Messages
+call s:Hi('Error', s:color_hl_1, 'NONE', 203, 'NONE', 'bold')
+call s:Hi('ErrorMsg', s:color_hl_1, 'NONE', 203, 'NONE', 'bold')
+call s:Hi('Warning', s:color_hl_2, 'NONE', 203, 'NONE', 'NONE')
+call s:Hi('WarningMsg', s:color_hl_2, 'NONE', 203, 'NONE', 'bold')
+call s:Hi('MoreMsg', s:color_hl_3, 'NONE', 153, 'NONE', 'bold')
 
-hi Pmenu      guifg=#999999 guibg=#242220 gui=NONE      ctermfg=246  ctermbg=235 cterm=NONE
-hi PmenuSbar  guifg=NONE    guibg=#242220 gui=NONE      ctermfg=NONE ctermbg=235 cterm=NONE
-hi PmenuSel   guifg=#d0d0d0 guibg=#242220 gui=underline ctermfg=252  ctermbg=235 cterm=underline
-hi PmenuThumb guifg=NONE    guibg=#555555 gui=NONE      ctermfg=NONE ctermbg=240 cterm=NONE
+" Parens
+call s:Hi('MatchParen', s:color_dark_3, s:color_hl_2, 16, 214, 'NONE')
+hi link ParenMatch MatchParen
 
-hi StatusLine    guifg=#aaaaaa  guibg=NONE  gui=underline  ctermfg=248  ctermbg=NONE  cterm=underline
-hi StatusLineNC  guifg=#555555  guibg=NONE  gui=underline  ctermfg=240  ctermbg=NONE  cterm=underline
+" Popup menu
+call s:Hi('Pmenu', s:color_bright_1, s:color_dark_2, 246, 235, 'NONE')
+call s:Hi('PmenuSbar', 'NONE', s:color_dark_2, 'NONE', 235, 'NONE')
+call s:Hi('PmenuSel', s:color_dark_2, s:color_bright_2, 252, 235, 'NONE')
+call s:Hi('PmenuThumb', 'NONE', s:color_dark_0, 'NONE', 235, 'NONE')
 
-hi CursorWordHighlight  gui=underline
+" Statusline
+call s:Hi('StatusLine', s:color_bright_2, 'NONE', 248, 'NONE', 'underline')
+call s:Hi('StatusLineNC', s:color_bright_0, 'NONE', 240, 'NONE', 'underline')
 
 " Highlighted syntax items
-call s:Hi('Comment', 36, 'NONE', 'italic', 243, 'NONE', 'italic')
-call s:Hi('String', 22, 'NONE', 'NONE', 247, 'NONE', 'NONE')
-hi EndOfBuffer  guifg=#773333  guibg=NONE  gui=NONE         ctermfg=95    ctermbg=NONE  cterm=NONE
+call s:HiFG('Comment', g:monotone_emphasize_comments ? s:color_hl_2 : s:color_bright_1, 243, 'italic')
+call s:HiFG('String', s:color_bright_2, 247, 'NONE')
+call s:Hi('EndOfBuffer', s:color_eob, 'NONE', 95, 'NONE', 'NONE')
+call s:Hi('NonText', s:color_nt, 'NONE', 95, 'NONE', 'NONE')
+call s:Hi('Todo', s:color_hl_2, 'NONE', 214, 'NONE', 'bold,italic')
+call s:Hi('Whitespace', s:color_dark_0, 'NONE', 236, 'NONE', 'NONE')
+
+" Font style syntax items
 hi Function     guifg=NONE     guibg=NONE  gui=italic       ctermfg=NONE  ctermbg=NONE  cterm=italic
 hi Identifier   guifg=NONE     guibg=NONE  gui=italic       ctermfg=NONE  ctermbg=NONE  cterm=italic
 hi Include      guifg=NONE     guibg=NONE  gui=italic       ctermfg=NONE  ctermbg=NONE  cterm=italic
 hi Keyword      guifg=NONE     guibg=NONE  gui=bold         ctermfg=NONE  ctermbg=NONE  cterm=bold
-hi NonText      guifg=#884433  guibg=NONE  gui=NONE         ctermfg=131   ctermbg=NONE  cterm=NONE
 hi Question     guifg=NONE     guibg=NONE  gui=NONE         ctermfg=NONE  ctermbg=NONE  cterm=NONE
 hi Statement    guifg=NONE     guibg=NONE  gui=bold         ctermfg=NONE  ctermbg=NONE  cterm=bold
-hi Todo         guifg=#dd9922  guibg=NONE  gui=bold,italic  ctermfg=214   ctermbg=NONE  cterm=bold,italic
 hi Type         guifg=NONE     guibg=NONE  gui=bold         ctermfg=NONE  ctermbg=NONE  cterm=bold
 hi Underlined   guifg=NONE     guibg=NONE  gui=underline    ctermfg=NONE  ctermbg=NONE  cterm=underline
-hi Whitespace   guifg=#333333  guibg=NONE  gui=NONE         ctermfg=236   ctermbg=NONE  cterm=NONE
 hi Title        guifg=NONE     guibg=NONE  gui=bold         ctermfg=NONE  ctermbg=NONE  cterm=bold
 
 " Diff highlighting
@@ -161,6 +192,7 @@ hi clear Special
 hi clear Noise
 
 " Plugin-specific highlighting
+hi link CursorWordHighlight Underlined
 
 " ALE
 hi ALEError       guisp=#ff4444 gui=undercurl ctermfg=203 cterm=bold,underline
@@ -179,13 +211,13 @@ hi CocInfoSign         guifg=#00afff ctermfg=153
 hi CocHintSign         guifg=#00afff ctermfg=153
 
 " Sneak
-hi Sneak          guifg=#000000 guibg=#00afff gui=NONE    ctermfg=16  ctermbg=153 cterm=NONE
-hi SneakLabel     guifg=#000000 guibg=#00afff gui=bold    ctermfg=16  ctermbg=153 cterm=bold
-hi SneakLabelMask guifg=#00afff guibg=#00afff ctermfg=153 ctermbg=153
+call s:Hi('Sneak', '#000000', s:color_hl_3, 16, 153, 'NONE')
+call s:Hi('SneakLabel', '#000000', s:color_hl_3, 16, 153, 'bold')
+call s:Hi('SneakLabelMask', s:color_hl_3, s:color_hl_3, 153, 153, 'NONE')
 
 " QuickScope
 hi QuickScopePrimary gui=underline guisp=#ff4444
 hi QuickScopeSecondary gui=underline guisp=#ff4444
 
 " Highlightedyank
-hi HighlightedyankRegion guibg=#000000 guifg=#dd9922
+hi link HighlightedyankRegion Warning
