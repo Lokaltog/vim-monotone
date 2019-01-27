@@ -31,6 +31,9 @@ endif
 if !exists('g:monotone_emphasize_comments')
 	let g:monotone_emphasize_comments = 0
 endif
+if !exists('g:monotone_contrast_factor')
+	let g:monotone_contrast_factor = 1
+endif
 
 function! s:HSLToHex(h, s, l)
 	" http://www.easyrgb.com/en/math.php#text19
@@ -72,10 +75,10 @@ function! s:Shade(offset)
 endfunction
 
 let s:color_normal   = s:Shade(0)
-let s:color_dark_0   = s:Shade(60)
-let s:color_dark_1   = s:Shade(69)
-let s:color_dark_2   = s:Shade(73)
-let s:color_dark_3   = s:Shade(75)
+let s:color_dark_0   = s:Shade(60 * g:monotone_contrast_factor)
+let s:color_dark_1   = s:Shade(69 * g:monotone_contrast_factor)
+let s:color_dark_2   = s:Shade(73 * g:monotone_contrast_factor)
+let s:color_dark_3   = s:Shade(75 * g:monotone_contrast_factor)
 let s:color_bright_0 = s:Shade(46)
 let s:color_bright_1 = s:Shade(36)
 let s:color_bright_2 = s:Shade(22)

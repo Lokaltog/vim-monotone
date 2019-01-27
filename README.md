@@ -39,6 +39,15 @@ Comments are highlighted in a darker color by default. If you prefer to
 emphasize comments, set `g:monotone_emphasize_comments` to 1. This will
 highlight comments with the warning highlight color (yellow by default).
 
+### Adjust contrast
+
+You may adjust the colorscheme contrast to your liking by setting
+`g:monotone_contrast_factor`. The contrast factor only affects dark/background
+colors, i.e. different contrast levels are achieved by changing the background
+lightness.
+
+The default contrast factor is 1.0. Recommended values are between 0.9 and 1.1.
+
 ## Configuration example
 
 ```
