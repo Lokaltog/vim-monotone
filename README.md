@@ -20,6 +20,23 @@ for customizations and special styling like underline/undercurl highlighting.
 
 Customization variables must be set before `colorscheme monotone` is executed.
 
+### Monotone command
+
+Monotone defines a `g:Monotone` function with a corresponding `Monotone`
+command, which can be used to load the colorscheme with user-defined settings
+without setting global config variables. This can be used e.g. for setting
+buffer-specific colors or [adjusting colorscheme brightness based on the time
+of day](https://github.com/Lokaltog/vim-monotone/wiki/F.lux-like-color-changes).
+Examples can be found in the wiki.
+
+Example usage:
+
+```
+" Monotone <h> <s> <l> <secondary-hue> <emphasize-comments> <contrast-factor>
+" Set the colorscheme to a monochrome beige color:
+Monotone 10 25 80 0 0 1
+```
+
 ### Theme color
 
 The theme color can be customized by setting `g:monotone_color` to an array of
