@@ -80,4 +80,6 @@ colorscheme monotone
 
 ![Screenshot of search and TODO highlighting examples](screenshots/2.png)
 
+![Screenshot of f.lux-like colors](screenshots/flux.png)
+
 ![Screenshot of custom theme color](screenshots/3.png)
