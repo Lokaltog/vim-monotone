@@ -81,7 +81,7 @@ endfunction
 
 function s:MonotoneColors(color, secondary_hue_offset, emphasize_comments, contrast_factor)
 	let s:color_normal   = s:Shade(a:color, 0)
-	let s:color_dark_0   = s:Shade(a:color, 60 * a:contrast_factor)
+	let s:color_dark_0   = s:Shade(a:color, 54 * a:contrast_factor)
 	let s:color_dark_1   = s:Shade(a:color, 69 * a:contrast_factor)
 	let s:color_dark_2   = s:Shade(a:color, 73 * a:contrast_factor)
 	let s:color_dark_3   = s:Shade(a:color, 75 * a:contrast_factor)
