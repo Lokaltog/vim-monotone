@@ -34,6 +34,9 @@ endif
 if !exists('g:monotone_emphasize_comments')
 	let g:monotone_emphasize_comments = 0
 endif
+if !exists('g:monotone_emphasize_whitespace')
+	let g:monotone_emphasize_whitespace = 0
+endif
 if !exists('g:monotone_contrast_factor')
 	let g:monotone_contrast_factor = 1
 endif
@@ -79,7 +82,7 @@ function s:Shade(color, offset)
 	return s:HSLToHex(h, s, l)
 endfunction
 
-function s:MonotoneColors(color, secondary_hue_offset, emphasize_comments, contrast_factor)
+function s:MonotoneColors(color, secondary_hue_offset, emphasize_comments, emphasize_whitespace, contrast_factor)
 	let s:color_normal   = s:Shade(a:color, 0)
 	let s:color_dark_0   = s:Shade(a:color, 54 * a:contrast_factor)
 	let s:color_dark_1   = s:Shade(a:color, 69 * a:contrast_factor)
@@ -164,7 +167,11 @@ function s:MonotoneColors(color, secondary_hue_offset, emphasize_comments, contr
 	call s:Hi('EndOfBuffer', s:color_eob, 'NONE', 95, 'NONE', 'NONE')
 	call s:Hi('NonText', s:color_nt, 'NONE', 95, 'NONE', 'NONE')
 	call s:Hi('Todo', s:color_hl_2, 'NONE', 214, 'NONE', 'bold,italic')
-	call s:Hi('Whitespace', s:color_dark_0, 'NONE', 236, 'NONE', 'NONE')
+	if a:emphasize_whitespace
+		call s:Hi('Whitespace', s:color_hl_1, 'NONE', 203, 'NONE', 'bold')
+	else
+		call s:Hi('Whitespace', s:color_dark_0, 'NONE', 236, 'NONE', 'NONE')
+	endif
 
 	" Font style syntax items
 	hi Function     guifg=NONE     guibg=NONE  gui=italic       ctermfg=NONE  ctermbg=NONE  cterm=italic
@@ -236,16 +243,19 @@ call s:MonotoneColors(
 	\ g:monotone_color,
 	\ g:monotone_secondary_hue_offset,
 	\ g:monotone_emphasize_comments,
+	\ g:monotone_emphasize_whitespace,
 	\ g:monotone_contrast_factor)
 
 function g:Monotone(h, s, l, ...)
 	let l:secondary_hue_offset = a:0 > 0 ? a:1 : g:monotone_secondary_hue_offset
 	let l:emphasize_comments = a:0 > 1 ? a:2 : g:monotone_emphasize_comments
-	let l:contrast_factor = a:0 > 2 ? str2float(a:3) : g:monotone_contrast_factor
+	let l:emphasize_whitespace = a:0 > 2 ? a:3 : g:monotone_emphasize_whitespace
+	let l:contrast_factor = a:0 > 3 ? str2float(a:4) : g:monotone_contrast_factor
 	call s:MonotoneColors(
 		\ [a:h, a:s, a:l],
 		\ l:secondary_hue_offset,
 		\ l:emphasize_comments,
+		\ l:emphasize_whitespace,
 		\ l:contrast_factor)
 endfunction
 

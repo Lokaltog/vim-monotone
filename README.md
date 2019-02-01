@@ -32,9 +32,10 @@ Examples can be found in the wiki.
 Example usage:
 
 ```
-" Monotone <h> <s> <l> <secondary-hue> <emphasize-comments> <contrast-factor>
+" Monotone <h> <s> <l> <secondary-hue> <emphasize-comments> <emphasize-whitespace> <contrast-factor>
+" Note: All positional arguments except h/s/l are optional
 " Set the colorscheme to a monochrome beige color:
-Monotone 10 25 80 0 0 1
+Monotone 10 25 80
 ```
 
 ### Theme color
@@ -55,6 +56,13 @@ to better match a theme color.
 Comments are highlighted in a darker color by default. If you prefer to
 emphasize comments, set `g:monotone_emphasize_comments` to 1. This will
 highlight comments with the warning highlight color (yellow by default).
+
+### Emphasize whitespace
+
+Whitespace (`listchars`) is highlighted in a darker color by default. If you
+prefer to emphasize whitespace (e.g. if you only use `listchars` to highlight
+trailing whitespace), set `g:monotone_emphasize_whitespace` to 1. This will
+highlight whitespace with the error highlight color (red by default).
 
 ### Adjust contrast
 
