@@ -147,6 +147,12 @@ function s:MonotoneColors(color, secondary_hue_offset, emphasize_comments, empha
 	call s:Hi('WarningMsg', s:color_hl_2, 'NONE', 203, 'NONE', 'bold')
 	call s:Hi('MoreMsg', s:color_hl_3, 'NONE', 153, 'NONE', 'bold')
 
+       " Spelling
+       call s:Hi('SpellBad', s:color_hl_1, 'NONE', 203, 'NONE', 'underline')
+       call s:Hi('SpellCap', s:color_hl_1, 'NONE', 203, 'NONE', 'underline')
+       call s:Hi('SpellRare', s:color_hl_1, 'NONE', 203, 'NONE', 'underline')
+       call s:Hi('SpellLocal', s:color_hl_1, 'NONE', 203, 'NONE', 'underline')
+
 	" Parens
 	call s:Hi('MatchParen', s:color_dark_3, s:color_hl_2, 16, 214, 'NONE')
 	hi link ParenMatch MatchParen
