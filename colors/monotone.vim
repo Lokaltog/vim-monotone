@@ -143,8 +143,8 @@ function s:MonotoneColors(color, secondary_hue_offset, emphasize_comments, empha
 	" Messages
 	call s:Hi('Error', s:color_hl_1, 'NONE', 203, 'NONE', 'bold')
 	call s:Hi('ErrorMsg', s:color_hl_1, 'NONE', 203, 'NONE', 'bold')
-	call s:Hi('Warning', s:color_hl_2, 'NONE', 203, 'NONE', 'NONE')
-	call s:Hi('WarningMsg', s:color_hl_2, 'NONE', 203, 'NONE', 'bold')
+	call s:Hi('Warning', s:color_hl_2, 'NONE', 214, 'NONE', 'NONE')
+	call s:Hi('WarningMsg', s:color_hl_2, 'NONE', 214, 'NONE', 'bold')
 	call s:Hi('MoreMsg', s:color_hl_3, 'NONE', 153, 'NONE', 'bold')
 
 	" Parens
