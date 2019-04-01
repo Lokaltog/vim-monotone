@@ -161,6 +161,11 @@ function s:MonotoneColors(color, secondary_hue_offset, emphasize_comments, empha
 	call s:Hi('StatusLine', s:color_bright_2, 'NONE', 248, 'NONE', 'underline')
 	call s:Hi('StatusLineNC', s:color_bright_0, 'NONE', 240, 'NONE', 'underline')
 
+	" Tabline
+	call s:Hi('TabLine', s:color_bright_0, 'NONE', 240, 'NONE', 'NONE')
+	call s:Hi('TabLineFill', s:color_bright_0, 'NONE', 240, 'NONE', 'NONE')
+	call s:Hi('TabLineSel', s:color_bright_2, 'NONE', 248, 'NONE', 'bold')
+
 	" Highlighted syntax items
 	call s:HiFG('Comment', a:emphasize_comments ? s:color_hl_2 : s:color_bright_1, 243, 'italic')
 	call s:HiFG('String', s:color_bright_2, 247, 'NONE')
