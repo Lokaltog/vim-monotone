@@ -221,6 +221,12 @@ function s:MonotoneColors(color, secondary_hue_offset, emphasize_comments, empha
 	hi ALEErrorSign   guifg=#ff4444 ctermfg=203
 	hi ALEWarningSign guifg=#dd9922 ctermfg=214
 
+	" Spelling
+	hi link SpellBad   ALEError
+	hi link SpellCap   ALEError
+	hi link SpellRare  ALEError
+	hi link SpellLocal ALEWarning
+
 	" COC
 	hi CocErrorHighlight   guisp=#ff4444 gui=undercurl ctermfg=203 cterm=bold,underline
 	hi CocWarningHighlight guisp=#dd9922 gui=undercurl ctermfg=214 cterm=bold,underline
