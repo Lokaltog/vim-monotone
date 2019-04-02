@@ -222,6 +222,10 @@ function s:MonotoneColors(color, secondary_hue_offset, emphasize_comments, empha
 	hi ALEWarningSign guifg=#dd9922 ctermfg=214
 
 	" Spelling
+	hi clear SpellBad
+	hi clear SpellCap
+	hi clear SpellRare
+	hi clear SpellLocal
 	hi link SpellBad   ALEError
 	hi link SpellCap   ALEError
 	hi link SpellRare  ALEError
