@@ -214,6 +214,7 @@ function s:MonotoneColors(color, secondary_hue_offset, emphasize_comments, empha
 
 	" Plugin-specific highlighting
 	hi link CursorWordHighlight Underlined
+	hi link CocHighlightText Underlined
 
 	" ALE
 	hi ALEError       guisp=#ff4444 gui=undercurl ctermfg=203 cterm=underline
