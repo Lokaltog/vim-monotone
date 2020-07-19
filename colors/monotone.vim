@@ -133,6 +133,7 @@ function s:MonotoneColors(color, secondary_hue_offset, emphasize_comments, empha
 	call s:Hi('CursorLineNr', s:color_bright_2, s:color_dark_1, 'NONE', 235, 'NONE')
 	call s:Hi('Folded', s:color_normal, s:color_dark_1, 252, 235, 'italic')
 	call s:Hi('Search', s:color_dark_3, s:color_hl_2, 16, 214, 'bold')
+	call s:Hi('IncSearch', s:color_dark_3, s:color_hl_2, 16, 214, 'bold,reverse')
 	call s:Hi('LineNr', s:color_bright_0, 'NONE', 240, 'NONE', 'NONE')
 	call s:Hi('VertSplit', s:color_bright_0, 'NONE', 240, 'NONE', 'NONE')
 	call s:Hi('WildMenu', s:color_dark_3, s:color_normal, 16, 248, 'NONE')
