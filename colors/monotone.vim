@@ -149,7 +149,7 @@ function s:MonotoneColors(color, secondary_hue_offset, emphasize_comments, empha
 	call s:Hi('MoreMsg', s:color_hl_3, 'NONE', 153, 'NONE', 'bold')
 
 	" Parens
-	call s:Hi('MatchParen', s:color_dark_3, s:color_hl_2, 16, 214, 'NONE')
+	call s:Hi('MatchParen', s:color_hl_2, s:color_dark_3, 214, 16, 'NONE')
 	hi link ParenMatch MatchParen
 
 	" Popup menu
