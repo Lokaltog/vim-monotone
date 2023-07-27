@@ -23,6 +23,12 @@
 " IN THE SOFTWARE.
 
 if exists('g:loaded_monotone')
+	call s:MonotoneColors(
+		\ g:monotone_color,
+		\ g:monotone_secondary_hue_offset,
+		\ g:monotone_emphasize_comments,
+		\ g:monotone_emphasize_whitespace,
+		\ g:monotone_contrast_factor)
 	finish
 endif
 if !exists('g:monotone_color')
